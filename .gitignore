@@ -14,7 +14,7 @@ compile_commands.json
 /Pendulum
 
 # macOS
-.DS_Store
+*.DS_Store
 
 # IDEs
 .vscode/
