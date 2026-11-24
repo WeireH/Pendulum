@@ -12,20 +12,19 @@ float lastX = 400, lastY = 300;
 
 bool firstMouse = true;
 float yaw = -90.0f;
-float pitch = 0.0f;
+float pitch = -30.0f;
 float Zoom = 0.0f;
 float fov = 45.0f;
 
 // === camera stuff ===
 // camera variables
-glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 1.0f);
-
+glm::vec3 cameraPos = glm::vec3(0.0f, 5.0f, 7.0f);
 glm::vec3 direction;
 
 // camera direction
 glm::vec3 cameraTarget = glm::vec3(0.0f, 0.0f, 0.0f);
 glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);
-glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, 0.0f);
 
 // right axis
 glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
@@ -73,6 +72,9 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos) {
     direction.y = sin(glm::radians(pitch));
     direction.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
     cameraFront = glm::normalize(direction);
+
+    cameraRight = glm::normalize(glm::cross(cameraFront, up));
+    cameraUp = glm::normalize(glm::cross(cameraRight, cameraFront));
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
